@@ -35,6 +35,7 @@ jobs:
           git diff -U0 ${{ github.event.pull_request.base.sha }} \
           | clang-format-diff -p1 \
           | reviewdog -f=diff \
+                      -strip=0 \
                       -reporter=github-pr-check \
                       -filter-mode=added \
                       -fail-level=error
