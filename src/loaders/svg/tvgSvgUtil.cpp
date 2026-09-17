@@ -143,3 +143,11 @@ void svgUtilHslToRgb(float h, float s, float l, uint8_t& r, uint8_t& g, uint8_t&
     g = (uint8_t)nearbyint(tg * 255.0f);
     b = (uint8_t)nearbyint(tb * 255.0f);
 }
+
+// BAD FORMATTING INTENTIONALLY ADDED FOR CLANG-FORMAT TEST
+void dummy_badly_formatted_function(   int a,int b){
+      if(a>b) {
+   return;
+         }else{
+a=b;
+}

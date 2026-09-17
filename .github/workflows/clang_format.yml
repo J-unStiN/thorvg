@@ -6,6 +6,7 @@ on:
 permissions:
   contents: read
   pull-requests: write
+  checks: write
 
 jobs:
   format:
@@ -27,13 +28,15 @@ jobs:
       - name: Install reviewdog
         uses: reviewdog/action-setup@v1
 
-      - name: Run clang-format check
+      - name: Proof for reviewdog strip parameter
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git diff -U0 ${{ github.event.pull_request.base.sha }} \
-          | clang-format-diff -p1 \
-          | reviewdog -f=diff \
-                      -reporter=github-pr-check \
-                      -filter-mode=added \
-                      -fail-level=error
+          git diff -U0 ${{ github.event.pull_request.base.sha }} > pr.diff
+          cat pr.diff | clang-format-diff -p1 > format.diff || true
+          
+          echo "=== Running reviewdog with Default (-strip=1) ==="
+          cat format.diff | reviewdog -f=diff -strip=1 -reporter=local -filter-mode=added || true
+          
+          echo "=== Running reviewdog with -strip=0 ==="
+          cat format.diff | reviewdog -f=diff -strip=0 -reporter=local -filter-mode=added || true
