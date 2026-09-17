@@ -37,7 +37,7 @@ jobs:
           | clang-format-diff -p1 \
           | reviewdog -f=diff \
                       -f.diff.strip=0 \
-                      -reporter=github-pr-check \
+                      -reporter=github-pr-review \
                       -filter-mode=added \
                       -fail-level=error \
                       -tee
