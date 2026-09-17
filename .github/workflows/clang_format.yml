@@ -33,7 +33,13 @@ jobs:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git diff -U0 ${{ github.event.pull_request.base.sha }} > pr.diff
+          echo "=== PR DIFF ==="
+          cat pr.diff
+          
           cat pr.diff | clang-format-diff -p1 > format.diff || true
+          
+          echo "=== FORMAT DIFF ==="
+          cat format.diff
           
           echo "=== Running reviewdog with Default (-strip=1) ==="
           cat format.diff | reviewdog -f=diff -strip=1 -reporter=local -filter-mode=added || true
