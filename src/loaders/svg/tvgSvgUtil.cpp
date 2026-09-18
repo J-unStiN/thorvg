@@ -143,3 +143,12 @@ void svgUtilHslToRgb(float h, float s, float l, uint8_t& r, uint8_t& g, uint8_t&
     g = (uint8_t)nearbyint(tg * 255.0f);
     b = (uint8_t)nearbyint(tb * 255.0f);
 }
+
+// [SCENARIO 1 TEST] BAD FORMATTING INTENTIONALLY ADDED
+void    test_scenario_1(int  x,int y){
+    if(x>y) {
+   return ;
+       }else{
+x=y;
+}
+}
