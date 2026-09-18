@@ -658,3 +658,4 @@ ThorVG is designed to remain open, accessible, and community-driven. To help ens
 For real-time conversations and discussions, please join us on [Discord](https://discord.gg/n25xj6J6HM)
 
 [Back to contents](#contents)
+<!-- Trigger CI without C++ changes -->
